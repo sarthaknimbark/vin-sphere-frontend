@@ -89,27 +89,29 @@ export default function ChassisInput({ onDecode, isLoading, onReset }) {
   };
 
   return (
-    <div className="w-full bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-      <div className="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
+    <div className="w-full glass-card rounded-2xl p-6">
+      <div className="flex flex-col border-b border-slate-200/50 pb-3.5 mb-4">
         <div className="flex items-center gap-2">
-          <Search className="w-4 h-4 text-blue-600" />
-          <h2 className="font-bold text-slate-800 text-sm tracking-tight">Chassis lookup</h2>
+          <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shrink-0">
+            <Search className="w-4 h-4" />
+          </div>
+          <h2 className="font-extrabold text-slate-800 text-sm tracking-tight uppercase">Chassis lookup</h2>
         </div>
-        <p className="text-xs text-slate-400">Enter chassis number to lookup vehicle details</p>
+        <p className="text-xs text-slate-500 mt-1.5 font-medium pl-10">Enter chassis number to lookup vehicle details</p>
       </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-3.5 items-center">
 
           {/* Chassis Number */}
-          <div className="md:col-span-9 input-outline-container py-1.5 px-3">
+          <div className="md:col-span-9 input-outline-container py-2 px-4 shadow-[inset_0_2px_4px_rgba(0,0,0,0.01)]">
             <span className="floating-label">Chassis number</span>
-            <div className="flex items-center gap-2 mt-1">
-              <Car className="w-4 h-4 text-slate-400" />
+            <div className="flex items-center gap-2.5 mt-1">
+              <Car className="w-4 h-4 text-slate-400 shrink-0" />
               <input
                 type="text"
                 className="w-full bg-transparent text-slate-800 text-sm font-semibold focus:outline-none uppercase tracking-widest placeholder:text-slate-300"
-                placeholder="Enter Chassis Number"
+                placeholder="Enter VIN / chassis number"
                 value={vin}
                 onChange={(e) => setVin(e.target.value)}
                 disabled={isLoading}
@@ -121,14 +123,14 @@ export default function ChassisInput({ onDecode, isLoading, onReset }) {
           <div className="md:col-span-3 flex gap-2">
             <button
               type="submit"
-              className="flex-1 bg-blue-600 hover:bg-blue-700 text-white rounded-lg py-3.5 px-4 font-semibold text-xs flex items-center justify-center gap-1.5 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl py-3.5 px-4 font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-md shadow-blue-500/10 hover:shadow-lg hover:shadow-blue-500/20 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
               disabled={isLoading || !!errorMsg || vin.length === 0}
             >
               {isLoading ? (
                 <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
               ) : (
                 <>
-                  <Search className="w-3.5 h-3.5" />
+                  <Search className="w-3.5 h-3.5 font-bold" />
                   <span>Lookup</span>
                 </>
               )}
@@ -136,7 +138,7 @@ export default function ChassisInput({ onDecode, isLoading, onReset }) {
             <button
               type="button"
               onClick={handleClear}
-              className="bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-500 rounded-lg p-3.5 transition-all"
+              className="bg-white hover:bg-slate-50 border border-slate-200 text-slate-500 rounded-full p-3.5 transition-all flex items-center justify-center shrink-0 w-11 h-11 shadow-sm hover:shadow hover:rotate-180 duration-500 cursor-pointer"
               title="Reset"
             >
               <RotateCcw className="w-4 h-4" />
@@ -162,3 +164,4 @@ export default function ChassisInput({ onDecode, isLoading, onReset }) {
     </div>
   );
 }
+
